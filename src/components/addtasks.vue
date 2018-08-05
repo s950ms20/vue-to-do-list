@@ -36,7 +36,7 @@
 
 
         <span>
-            <button class="float-right" type="submit">{{buttonText}}</button>
+            <button class="float-right" type="submit"><i class="material-icons">add</i></button>
             <br><br><br>
         </span>
     </form>

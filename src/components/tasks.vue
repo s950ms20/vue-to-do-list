@@ -4,7 +4,7 @@
 
 <div class="showAndHideButtons">
 <button id="hideCodeButton"
-v-stream:click="{subject: this.hideTasksCoding, data: this.tasks}" @click="hideCode = !hideCode, chooseCategory()" :class="{grayButton: hideCode}">{{btn1}}</button>
+@click="hideCode = !hideCode, chooseCategory()" :class="{grayButton: hideCode}">{{btn1}}</button>
 <button id="hideDoneButton" @click="hideDone = !hideDone, chooseCategory()" :class="{grayButton: hideDone}">{{btn2}}</button>
 <button id="showAll" @click="showAllBtnBoolean = !showAllBtnBoolean, showAll()" :class="{grayButton: showAllBtnBoolean}">{{btn3}}</button>
 </div>
@@ -14,9 +14,18 @@ v-stream:click="{subject: this.hideTasksCoding, data: this.tasks}" @click="hideC
 <table class="table">
   <thead class="thead-dark">
     <th>#</th>
-    <th scope="col" >Zadanie</th>
-    <th scope="col" >Priorytet</th>
-    <th scope="col" >Status</th>
+    <th scope="col" >Zadanie
+    <i @click="sortByTaskDec()" class="material-icons md-24">arrow_downward</i>
+    <i @click="sortByTaskInc()" class="material-icons md-24">arrow_upward</i>
+    </th>
+    <th scope="col" >Priorytet
+    <i @click="sortByImportanceDec()" class="material-icons md-24">arrow_downward</i>
+    <i @click="sortByImportanceInc()" class="material-icons md-24">arrow_upward</i>
+    </th>
+    <th scope="col" >Status
+    <i @click="sortByStatusDec()" class="material-icons md-24">arrow_downward</i>
+    <i @click="sortByStatusInc()" class="material-icons md-24">arrow_upward</i>
+    </th>
     <th scope="col"></th>
     <th scope="col"></th>
   </thead>
@@ -25,7 +34,9 @@ v-stream:click="{subject: this.hideTasksCoding, data: this.tasks}" @click="hideC
     <td scope="row">{{taskElem.task}}</td>
     <td>{{taskElem.importance}}</td>
     <td><p v-if="taskElem.status">Ukonczone</p><p v-if="!taskElem.status">Nieukonczone</p></td>
-    <td><button @click="del(taskElem.id)">Delete</button></td>
+    <td><button @click="del(taskElem.id)">
+          <i class="material-icons md-24">delete</i>
+      </button></td>
     <td><edittask :taskElem="taskElem" class="inline"></edittask></td>
     </tr>
 </table>
@@ -86,21 +97,22 @@ export default {
             editmode: false
             },
           buttonText: 'Dodaj',
+          key: ''
     }
   },
 
   subscriptions () {
-      this.hideTasksCoding = new Subject;
-    return {
+    //   this.hideTasksCoding = new Subject;
+    // return {
 
-        // hideCode: this.hideTasksCoding
-        // .filter(value => value.data.Coding = !this.hideCode)
-        // // .pluck('coding', 'true')
-        // // .map(value => this.tasks.push(value))
-        // .filter(
-        //   (value) => console.log(value.data)
-        // )
-      }
+    //     hideCode: this.hideTasksCoding
+    //     .filter(value => value.data.Coding = !this.hideCode)
+    //     // .pluck('coding', 'true')
+    //     // .map(value => this.tasks.push(value))
+    //     .filter(
+    //       (value) => console.log(value.data)
+    //     )
+    //   }
   },
 
     methods: {
@@ -127,7 +139,65 @@ export default {
         this.tasks2.push(
         this.tasks.filter(value => value))
         console.log('Length of tasks2 is: ' + this.tasks2[0].length)
-      }
+      },
+
+      sortByTaskDec(key){
+        this.tasks2[0].sort(
+          function (a,b, key) {
+            if (a.task > b.task) {return -1}
+            else if (a.task < b.task) {return 1}
+            else if (a.task = b.task) {return 0}
+          }
+          );
+      },
+      sortByTaskInc(){
+        this.tasks2[0].sort(
+          function (a,b, key) {
+            if (a.task < b.task) {return -1}
+            else if (a.task > b.task) {return 1}
+            else if (a.task = b.task) {return 0}
+          }
+          );
+      },
+      sortByImportanceDec(key){
+        this.tasks2[0].sort(
+          function (a,b, key) {
+            if (a.importance > b.importance) {return -1}
+            else if (a.importance < b.importance) {return 1}
+            else if (a.importance = b.importance) {return 0}
+          }
+          );
+      },
+      sortByImportanceInc(){
+        this.tasks2[0].sort(
+          function (a,b, key) {
+            if (a.importance < b.importance) {return -1}
+            else if (a.importance > b.importance) {return 1}
+            else if (a.importance = b.importance) {return 0}
+          }
+          );
+      },
+      sortByStatusDec(key){
+        this.tasks2[0].sort(
+          function (a,b, key) {
+            if (a.status > b.status) {return -1}
+            else if (a.status < b.status) {return 1}
+            else if (a.status = b.status) {return 0}
+          }
+          );
+      },
+      sortByStatusInc(){
+        this.tasks2[0].sort(
+          function (a,b, key) {
+            if (a.status < b.status) {return -1}
+            else if (a.status > b.status) {return 1}
+            else if (a.status = b.status) {return 0}
+          }
+          );
+      },
+
+
+
     },
 mixins: [mainMixin]
 }
@@ -136,3 +206,4 @@ mixins: [mainMixin]
 <style lang="scss">
 
 </style>
+

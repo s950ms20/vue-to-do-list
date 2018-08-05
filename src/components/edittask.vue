@@ -3,7 +3,7 @@
     <div class="editbox">
 <!-- EDIT MODE START -->
                     <span>
-                        <button @click="edit()">Edit</button>
+                        <button @click="edit()"><i class="material-icons md-24">edit</i></button>
                         <br>
                         <form v-if="editModeData.editmode" @submit.prevent="
                         changeData(taskElem.task, taskElem.status, taskElem.id, taskElem.importance, taskElem.Coding, taskElem.Music),
@@ -22,7 +22,7 @@
                         </label>
                     <br>
                     <span>
-                        <button type="submit">{{buttonText}}</button>
+                        <button type="submit"><i class="material-icons md-24">done</i></button>
                     </span>
                 </form>
                   </span>

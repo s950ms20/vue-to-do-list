@@ -30,6 +30,9 @@ export default {
 
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+
 * {
   font-family: 'Raleway', sans-serif;
 }
@@ -55,5 +58,14 @@ button {
   padding: 10px;
   margin: 5px;
 }
+
+.material-icons {
+  float: right;
+}
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
 
 </style>
