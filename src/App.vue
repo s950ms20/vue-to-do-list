@@ -41,22 +41,32 @@ export default {
   background-color: rgb(245, 245, 245);
   }
 
-
 button {
   @extend .btn;
-  @extend .btn-info;
-  // width: 120px;;
+  @extend .btn-outline-dark;
   padding: 10px;
   margin: 5px;
 }
 
 .grayButton {
-  // @extend button;
   @extend .btn;
-  @extend .btn-success;
-  // width: 120px;;
+  @extend .btn-light;
+  background-color: lightgrey;
+  color: black;
   padding: 10px;
   margin: 5px;
+}
+
+.ib {
+  display: inline-block;
+}
+
+td {
+  @extend .mx-auto;
+}
+
+h1 {
+  margin: 20px;
 }
 
 .material-icons {

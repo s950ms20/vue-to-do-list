@@ -11,15 +11,14 @@
                         ">
                     <span>
                         <input type="text" v-model="taskElem.task" required placeholder="Wprowadź nazwę zadania">
-                    </span>
-                        <input type="checkbox" id="status" v-model="taskElem.status"
-                        >
+                    </span><br>
+                        <input type="checkbox" id="status" v-model="taskElem.status">
                         <label for="status">
                         <span v-if="!status">Gotowe!</span><span v-else>Niegotowe</span>
-                        <span>Priorytet: {{taskElem.importance}}</span>
-                        <span>Kategoria: <span v-if="taskElem.Coding">Kodowanie</span><span v-if="taskElem.Music">Muzyka</span>
-                          </span>
                         </label>
+                        <br>
+                        <!-- <span>Priorytet: {{taskElem.importance}}</span><br> -->
+                        <!-- <span>Kategoria: <span v-if="taskElem.Coding">Kodowanie</span><span v-if="taskElem.Music">Muzyka</span></span> -->
                     <br>
                     <span>
                         <button type="submit"><i class="material-icons md-24">done</i></button>

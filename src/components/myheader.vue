@@ -1,5 +1,5 @@
 <template>
-  <div class="header alert alert-primary nav justify-content-center" role="alert">
+  <div class="header bg-light nav justify-content-center">
     <h1>{{msg}}</h1>
   </div>
 

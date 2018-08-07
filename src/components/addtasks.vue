@@ -2,6 +2,7 @@
   <div class="addpanel nav justify-content-center form-group">
       <br><br><br>
     <form @submit.prevent="addTask(task, Coding, Music, importance, status, id), eventBusEmitter()">
+        <br>
         <span>
             <input type="text" v-model="task" required placeholder="Wprowadź nazwę zadania" size="50"
                 v-on:keyup="generateID">

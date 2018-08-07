@@ -56,7 +56,6 @@ firestore () {
         },
 
         edit(){
-          this.buttonText = 'Aktualizuj';
           this.editModeData.editmode = !this.editModeData.editmode;
           (this.editModeData.editmode) ? console.log("edit mode on") : (console.log("edit mode off"));
         },

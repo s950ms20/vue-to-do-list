@@ -1,43 +1,44 @@
 <template>
-  <div>
+  <div class="container">
     <div>
 
-<div class="showAndHideButtons">
-<button id="hideCodeButton"
-@click="hideCode = !hideCode, chooseCategory()" :class="{grayButton: hideCode}">{{btn1}}</button>
-<button id="hideDoneButton" @click="hideDone = !hideDone, chooseCategory()" :class="{grayButton: hideDone}">{{btn2}}</button>
-<button id="showAll" @click="showAllBtnBoolean = !showAllBtnBoolean, showAll()" :class="{grayButton: showAllBtnBoolean}">{{btn3}}</button>
+<div class="showAndHideButtons row">
+<button id="hideCodeButton" class="col" @click="hideCode = !hideCode, chooseCategory()" :class="{grayButton: hideCode}">{{btn1}}: {{this.category}}</button>
+<button id="hideDoneButton" class="col" @click="hideDone = !hideDone, chooseCategory()" :class="{grayButton: hideDone}">{{btn2}}: {{this.actualStatus}}</button>
+<button id="showAll" class="col" @click="showAllBtnBoolean = !showAllBtnBoolean, showAll()" :class="{grayButton: showAllBtnBoolean}">{{btn3}}</button>
 </div>
-<div class="alert alert-primary">
-<h3>{{this.category}}: {{this.actualStatus}}:</h3>
-</div>
+<!-- <div class="alert alert-primary">
+<p>{{this.category}}: {{this.actualStatus}}</p>
+</div> -->
 <table class="table">
-  <thead class="thead-dark">
-    <th>#</th>
+  <thead class="thead-light">
+    <!-- <th>#</th> -->
     <th scope="col" >Zadanie
     <i @click="sortByTaskDec()" class="material-icons md-24">arrow_downward</i>
     <i @click="sortByTaskInc()" class="material-icons md-24">arrow_upward</i>
     </th>
-    <th scope="col" >Priorytet
+    <th scope="col">Priorytet
     <i @click="sortByImportanceDec()" class="material-icons md-24">arrow_downward</i>
     <i @click="sortByImportanceInc()" class="material-icons md-24">arrow_upward</i>
     </th>
-    <th scope="col" >Status
+    <!-- <th scope="col" >Status
     <i @click="sortByStatusDec()" class="material-icons md-24">arrow_downward</i>
     <i @click="sortByStatusInc()" class="material-icons md-24">arrow_upward</i>
-    </th>
+    </th> -->
     <th scope="col"></th>
-    <th scope="col"></th>
+    <!-- <th scope="col"></th> -->
   </thead>
   <tr v-for="(taskElem, index) in tasks2[0]" :key="index">
-    <td>{{index+1}}</td>
-    <td scope="row">{{taskElem.task}}</td>
+    <!-- <td>{{index+1}}</td> -->
+    <td scope="row" @click="edit()">
+        {{taskElem.task}}
+    </td>
     <td>{{taskElem.importance}}</td>
-    <td><p v-if="taskElem.status">Ukonczone</p><p v-if="!taskElem.status">Nieukonczone</p></td>
-    <td><button @click="del(taskElem.id)">
+    <!-- <td><p v-if="taskElem.status">Ukonczone</p><p v-if="!taskElem.status">Nieukonczone</p></td> -->
+    <td><button class="ib" @click="del(taskElem.id)">
           <i class="material-icons md-24">delete</i>
-      </button></td>
-    <td><edittask :taskElem="taskElem" class="inline"></edittask></td>
+      </button>
+      <edittask :taskElem="taskElem" class="ib"></edittask></td>
     </tr>
 </table>
 </div>
@@ -90,8 +91,8 @@ export default {
           btn1: 'Wybierz kategorię',
           btn2: 'Wybierz Status',
           btn3: 'Pokaż wszystko',
-          category: 'Kategoria',
-          actualStatus: 'Status',
+          category: '',
+          actualStatus: '',
           idx: '',
           editModeData: {
             editmode: false
@@ -159,7 +160,7 @@ export default {
           }
           );
       },
-      sortByImportanceDec(key){
+      sortByImportanceDec(){
         this.tasks2[0].sort(
           function (a,b, key) {
             if (a.importance > b.importance) {return -1}
@@ -177,7 +178,7 @@ export default {
           }
           );
       },
-      sortByStatusDec(key){
+      sortByStatusDec(){
         this.tasks2[0].sort(
           function (a,b, key) {
             if (a.status > b.status) {return -1}

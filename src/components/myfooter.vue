@@ -1,5 +1,5 @@
 <template>
-  <div class="footer header alert alert-primary nav justify-content-center">
+  <div class="footer bg-light nav justify-content-center">
     <h1>{{msg}}</h1>
   </div>
 
